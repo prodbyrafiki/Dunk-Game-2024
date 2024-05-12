@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cln5lpo73m61d"]
+
+[ext_resource type="Texture2D" uid="uid://crav5hrx0j317" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_e621y"]
+[ext_resource type="Texture2D" uid="uid://t3tdwi26h5py" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_0mdr7"]
+[ext_resource type="PackedScene" uid="uid://cbljwsbyy00b" path="res://Node/Player.tscn" id="3_iyhys"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utkb8"]
+albedo_texture = ExtResource("1_e621y")
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t0sid"]
+panorama = ExtResource("2_0mdr7")
+
+[sub_resource type="Sky" id="Sky_sgnj6"]
+sky_material = SubResource("PanoramaSkyMaterial_t0sid")
+
+[sub_resource type="Environment" id="Environment_phttg"]
+background_mode = 2
+sky = SubResource("Sky_sgnj6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.14, 0, 2.06767, -11.2817)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.00999999, 0, 0, 0, 1, 0, 0, 0, 0.0196, 5.60649, 4.13534, -12.8611)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_phttg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("3_iyhys")]
