@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
 # nodes
-@onready var pivot = $head
-@onready var camera = $head/Camera3D
+@onready var pivot = $neck/head
+@onready var camera = $neck/head/Camera3D
 @onready var standing_collision_shape = $StandingCollisionShape
 @onready var crouching_collision_shape = $CrouchingCollisionShape
 @onready var ray_cast_3d = $RayCast3D
+@onready var neck = $neck
+@onready var camera_3d = $neck/head/Camera3D
 
 
 # speeds
@@ -21,6 +23,8 @@ var crouching_depth = -0.5
 var sensitivity = 0.003
 var direction = Vector3.ZERO
 
+var free_look_tilt = 6
+
 
 
 #states
@@ -30,11 +34,19 @@ var crouching = false
 var free_looking = false
 var sliding = false
 
+# slide var
+
+var slide_timer = 0.0
+var slide_timer_max = 1
+var slide_vector = Vector2.ZERO
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _unhandled_input(event):
+	
+	
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elif event.is_action_pressed("ui_cancel"):
@@ -42,12 +54,22 @@ func _unhandled_input(event):
 	
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
-			pivot.rotate_y(-event.relative.x * sensitivity / 2)
-			camera.rotate_x(-event.relative.y * sensitivity / 4)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-			camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(0), deg_to_rad(0))
+			if free_looking:
+				neck.rotate_y(-event.relative.x * sensitivity / 2)
+				neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120))
+			else:
+			
+				pivot.rotate_y(-event.relative.x * sensitivity / 2)
+				camera.rotate_x(-event.relative.y * sensitivity / 4)
+				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+				camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(0), deg_to_rad(0))
+			
+			
 
 func _physics_process(delta):
+	
+	#movement input get
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
 	# handle movement 
 	
@@ -55,10 +77,16 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("crounch"):
 		current_speed = crouching_speed
-		pivot.position.y = lerp(pivot.position.y, 1.8 + crouching_depth, delta*lerp_speed)
+		pivot.position.y = lerp(pivot.position.y, crouching_depth, delta*lerp_speed)
 		
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
+		
+		# Slide Begin Logic
+		if sprinting && input_dir != Vector2.ZERO:
+			sliding = true
+			slide_timer = slide_timer_max
+			slide_vector = input_dir
 		
 		walking = false
 		sprinting = false
@@ -69,7 +97,7 @@ func _physics_process(delta):
 	# Standing
 		standing_collision_shape.disabled = false
 		crouching_collision_shape.disabled = true
-		pivot.position.y = lerp(pivot.position.y, 1.8 , delta*lerp_speed)
+		pivot.position.y = lerp(pivot.position.y, 0.0 , delta*lerp_speed)
 		
 	# Sprinting
 		if Input.is_action_pressed("sprint"):
@@ -89,11 +117,23 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("free_look"):
 		free_looking = true
+		camera_3d.rotation.z = -deg_to_rad(neck.rotation.y * free_look_tilt)
+		
 	else:
 		free_looking = false
+		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerp_speed)
+		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
 		
 		
-		
+	# Handle Sliding Logic
+	
+	if sliding:
+		slide_timer -= delta
+		if slide_timer <- 0:
+			sliding = false
+			
+			
+			
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -104,8 +144,12 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+
 	var direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if sliding:
+		direction = transform.basis + slide_vector
+	
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
