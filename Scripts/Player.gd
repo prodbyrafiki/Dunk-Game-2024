@@ -38,7 +38,7 @@ var sliding = false
 
 var slide_timer = 0.0
 var slide_timer_max = 1
-var slide_vector = Vector2.ZERO
+var slide_speed = 10 
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -67,7 +67,7 @@ func _unhandled_input(event):
 			
 
 func _physics_process(delta):
-	
+
 	#movement input get
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
@@ -86,7 +86,7 @@ func _physics_process(delta):
 		if sprinting && input_dir != Vector2.ZERO:
 			sliding = true
 			slide_timer = slide_timer_max
-			slide_vector = input_dir
+			free_looking = true 
 		
 		walking = false
 		sprinting = false
@@ -129,8 +129,9 @@ func _physics_process(delta):
 	
 	if sliding:
 		slide_timer -= delta
-		if slide_timer <- 0:
+		if slide_timer <= 0:
 			sliding = false
+			free_looking = false
 			
 			
 			
@@ -141,18 +142,22 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		sliding = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
-	var direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if sliding:
-		direction = transform.basis + slide_vector
+
 	
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
+		
+		if sliding:
+			velocity.x = direction.x * (slide_timer + 0.4) * slide_speed
+			velocity.z = direction.z * (slide_timer + 0.4) * slide_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
