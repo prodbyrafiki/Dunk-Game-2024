@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://bocj4uvflgd6j"]
+
+[ext_resource type="Script" path="res://Node/world_menu.gd" id="1_f80i5"]
+[ext_resource type="Texture2D" uid="uid://crav5hrx0j317" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_t5rls"]
+[ext_resource type="Texture2D" uid="uid://t3tdwi26h5py" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_7iy2o"]
+[ext_resource type="Script" path="res://Node/menu.gd" id="4_6dh35"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utkb8"]
+albedo_texture = ExtResource("2_t5rls")
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_t0sid"]
+panorama = ExtResource("3_7iy2o")
+
+[sub_resource type="Sky" id="Sky_sgnj6"]
+sky_material = SubResource("PanoramaSkyMaterial_t0sid")
+
+[sub_resource type="Environment" id="Environment_phttg"]
+background_mode = 2
+sky = SubResource("Sky_sgnj6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_f80i5")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.91, 0, 0, 0, 1, 0, 0, 0, 1.078, 4.48045, 2.32488, -13.6839)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_phttg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -20.0
+offset_right = 45.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("4_6dh35")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play Game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="Camera_Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Camera_Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 5, 16)
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="VBoxContainer" method="_on_button_2_pressed"]

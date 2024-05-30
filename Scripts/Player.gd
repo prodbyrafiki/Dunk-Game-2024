@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var camera_3d = $neck/head/eye/Camera3D
 
 
+
 # speeds
 var current_speed = 5.0
 const sprinting_speed = 8.0
@@ -90,7 +91,7 @@ func _physics_process(delta):
 	# Crouchinng 
 	
 	if Input.is_action_pressed("crounch"):
-		current_speed = crouching_speed
+		current_speed = lerp(current_speed, crouching_speed, delta * lerp_speed)
 		pivot.position.y = lerp(pivot.position.y, crouching_depth, delta*lerp_speed)
 		
 		standing_collision_shape.disabled = true
@@ -115,13 +116,13 @@ func _physics_process(delta):
 		
 	# Sprinting
 		if Input.is_action_pressed("sprint"):
-			current_speed = sprinting_speed
+			current_speed = lerp(current_speed, sprinting_speed, delta * lerp_speed)
 			walking = false
 			sprinting = true
 			crouching = false
 		else:
 	# Walking
-			current_speed = walking_speed
+			current_speed = lerp(current_speed, walking_speed, delta * lerp_speed)
 			walking = true
 			sprinting = false
 			crouching = false
@@ -137,6 +138,9 @@ func _physics_process(delta):
 		free_looking = false
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerp_speed)
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
+		
+		
+		
 		
 		
 	# Handle Sliding Logic
@@ -177,21 +181,23 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		sliding = false
+		
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
+
 	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-
+		
+	if sliding:
+		current_speed = (slide_timer + 0.4) * slide_speed
 	
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
-		
-		if sliding:
-			velocity.x = direction.x * (slide_timer + 0.4) * slide_speed
-			velocity.z = direction.z * (slide_timer + 0.4) * slide_speed
+
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
