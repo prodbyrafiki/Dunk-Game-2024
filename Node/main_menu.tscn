@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bocj4uvflgd6j"]
 
-[ext_resource type="Script" path="res://Node/world_menu.gd" id="1_f80i5"]
+[ext_resource type="Script" path="res://Scripts/world_menu.gd" id="1_f80i5"]
 [ext_resource type="Texture2D" uid="uid://crav5hrx0j317" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_t5rls"]
 [ext_resource type="Texture2D" uid="uid://t3tdwi26h5py" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_7iy2o"]
-[ext_resource type="Script" path="res://Node/menu.gd" id="4_6dh35"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="4_6dh35"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utkb8"]
 albedo_texture = ExtResource("2_t5rls")

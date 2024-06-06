@@ -10,6 +10,10 @@ extends CharacterBody3D
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
 
+#interaction
+
+
+
 
 
 # speeds
@@ -56,6 +60,10 @@ var head_bobbing_vector = Vector2.ZERO
 var head_bobbing_index = 0.0
 var head_bobbing_current_intesity = 0.0
 
+
+
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -90,18 +98,24 @@ func _physics_process(delta):
 	
 	# Crouchinng 
 	
-	if Input.is_action_pressed("crounch"):
+	if Input.is_action_pressed("crounch") && is_on_floor():
 		current_speed = lerp(current_speed, crouching_speed, delta * lerp_speed)
 		pivot.position.y = lerp(pivot.position.y, crouching_depth, delta*lerp_speed)
 		
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
 		
+		if not is_on_floor():
+			current_speed = JUMP_VELOCITY
+		
 		# Slide Begin Logic
 		if sprinting && input_dir != Vector2.ZERO:
 			sliding = true
 			slide_timer = slide_timer_max
 			free_looking = true 
+		elif Input.is_action_just_released("crounch"):
+			slide_timer = 0
+			sliding = false
 		
 		walking = false
 		sprinting = false
@@ -114,6 +128,8 @@ func _physics_process(delta):
 		crouching_collision_shape.disabled = true
 		pivot.position.y = lerp(pivot.position.y, 0.0 , delta*lerp_speed)
 		
+			
+
 	# Sprinting
 		if Input.is_action_pressed("sprint"):
 			current_speed = lerp(current_speed, sprinting_speed, delta * lerp_speed)
@@ -193,6 +209,7 @@ func _physics_process(delta):
 		
 	if sliding:
 		current_speed = (slide_timer + 0.4) * slide_speed
+
 	
 	if direction:
 		velocity.x = direction.x * current_speed

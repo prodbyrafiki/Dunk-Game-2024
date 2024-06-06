@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr80p5634qljr"]
+
+[ext_resource type="Script" path="res://Wheel.gd" id="1_oybn2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_luljd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_23qxu"]
+
+[node name="Wheel" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_oybn2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 4.37114e-09, -1, 0, -0.1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_luljd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_23qxu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

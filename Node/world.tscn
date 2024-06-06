@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cln5lpo73m61d"]
+[gd_scene load_steps=9 format=3 uid="uid://cln5lpo73m61d"]
 
 [ext_resource type="Texture2D" uid="uid://crav5hrx0j317" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_e621y"]
 [ext_resource type="Texture2D" uid="uid://t3tdwi26h5py" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_0mdr7"]
 [ext_resource type="PackedScene" uid="uid://cbljwsbyy00b" path="res://Node/Player.tscn" id="3_iyhys"]
+[ext_resource type="PackedScene" uid="uid://dr80p5634qljr" path="res://Node/wheel.tscn" id="4_xr2k6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utkb8"]
 albedo_texture = ExtResource("1_e621y")
@@ -44,3 +45,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("3_iyhys")]
+
+[node name="Wheel" parent="." instance=ExtResource("4_xr2k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 0)
