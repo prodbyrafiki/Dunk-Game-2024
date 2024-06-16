@@ -9,6 +9,10 @@ extends CharacterBody3D
 @onready var ray_cast_3d = $RayCast3D
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
+@onready var gun_anim = $AnimationPlayer
+
+@onready var gun_barrel = $neck/head/eye/Camera3D/Gun/RayCast3D
+
 
 #interaction
 
@@ -61,11 +65,18 @@ var head_bobbing_index = 0.0
 var head_bobbing_current_intesity = 0.0
 
 
+var bullet = load("res://Node/bullet.tscn")
+var instance
+
 
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _ready():
+	gun_anim.play("gun_activate")
+
 
 func _unhandled_input(event):
 	
@@ -156,6 +167,16 @@ func _physics_process(delta):
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
 		
 		
+		
+#Handle Shooting
+
+	if Input.is_action_pressed("shoot"):
+		if !gun_anim.is_playing():
+			gun_anim.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
 		
 		
 		

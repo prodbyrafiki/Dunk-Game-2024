@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://beylmx8mc8h0i" path="res://assets/SteampunkGun/Steampunk Rifle.glb" id="1_i0wl0"]
 
 [node name="Gun" instance=ExtResource("1_i0wl0")]
+transform = Transform3D(1, 0, 0, 0, 0.998796, 0.0490621, 0, -0.0490621, 0.998796, 0.244, 1.613, -0.50265)
+
+[node name="Node" parent="." index="0"]
+cast_shadow = 0
 
 [node name="RayCast3D" type="RayCast3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 0.998134, -0.061066, 0, 0.061066, 0.998134, 0, 0.0193844, -0.499048)
+target_position = Vector3(0, 0, -1)
