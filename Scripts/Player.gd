@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
 @onready var gun_anim = $AnimationPlayer
+@onready var gun = $neck/head/eye/Camera3D/Gun
 
 @onready var gun_barrel = $neck/head/eye/Camera3D/Gun/RayCast3D
 
@@ -206,6 +207,10 @@ func _physics_process(delta):
 
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
+		
+		gun.rotation.y = lerp(gun.rotation.x, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
+		gun.rotation.x = lerp(gun.rotation.y, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
+		gun.rotation.z = lerp(gun.rotation.z, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta*lerp_speed)
