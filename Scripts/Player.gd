@@ -10,12 +10,14 @@ extends CharacterBody3D
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
 @onready var gun_anim = $AnimationPlayer
-@onready var gun = $neck/head/eye/Camera3D/Gun
+@onready var gun_pivot = $neck/head/eye/Camera3D/gun_pivot
 
-@onready var gun_barrel = $neck/head/eye/Camera3D/Gun/RayCast3D
+@onready var gun_barrel = $neck/head/eye/Camera3D/gun_pivot/Gun/RayCast3D
 
 
 #interaction
+
+
 
 
 
@@ -65,6 +67,8 @@ var head_bobbing_vector = Vector2.ZERO
 var head_bobbing_index = 0.0
 var head_bobbing_current_intesity = 0.0
 
+#var gun_bobbing_vector = Vector2.ZERO
+#const head_bobbing_gun_intensity = 0.1
 
 var bullet = load("res://Node/bullet.tscn")
 var instance
@@ -204,13 +208,17 @@ func _physics_process(delta):
 	if is_on_floor() && !sliding && input_dir !=Vector2.ZERO:
 		head_bobbing_vector.y = sin(head_bobbing_index)
 		head_bobbing_vector.x = sin(head_bobbing_index/2)+0.5
+		
+		# Makeshift Gun Bobbing
+		#gun_bobbing_vector.y = sin(head_bobbing_walking_speed*delta)
+		#gun_bobbing_vector.x = sin((head_bobbing_walking_speed*delta)/2)+0.5
+		#
 
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 		
-		gun.rotation.y = lerp(gun.rotation.x, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
-		gun.rotation.x = lerp(gun.rotation.y, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
-		gun.rotation.z = lerp(gun.rotation.z, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
+		#gun_pivot.position.y = lerp(gun_pivot.position.x, gun_bobbing_vector.x*(head_bobbing_gun_intensity/2.0), delta*lerp_speed)
+		#gun_pivot.position.x = lerp(gun_pivot.position.y, gun_bobbing_vector.x*(head_bobbing_gun_intensity/2.0), delta*lerp_speed)
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta*lerp_speed)

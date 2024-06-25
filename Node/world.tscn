@@ -32,9 +32,27 @@ size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_utkb8")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Enviroment"]
-transform = Transform3D(0.91, 0, 0, 0, 1, 0, 0, 0, 1.078, 4.48045, 2.32488, -13.6839)
+transform = Transform3D(0.91, 0, 0, 0, 1, 0, 0, 0, 1.078, -2.79955, 0.75573, -24.9999)
 use_collision = true
-size = Vector3(20, 1, 20)
+size = Vector3(4, 1, 24.6489)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.123455, 0, 0, 0, 0.949821, 0, 0, 0, 0.037379, 0.0433488, 1.8994, 9.23015)
+use_collision = true
+size = Vector3(91.8823, 1.57568, 20)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.8281, 0, 0, 0, 1, 0, 0, 0, 1.16208, 1.86895, 1.83699, -22.6259)
+use_collision = true
+size = Vector3(4, 1, 16.2275)
+material = SubResource("StandardMaterial3D_utkb8")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Enviroment"]
+transform = Transform3D(0.68575, 0, 0, 0, 1, 0, 0, 0, 1.35044, 14.5151, -3.83649, -26.5028)
+use_collision = true
+size = Vector3(13.7217, 1, 16.2275)
 material = SubResource("StandardMaterial3D_utkb8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]

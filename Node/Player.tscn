@@ -205,11 +205,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="neck/head/eye"]
 
-[node name="Gun" parent="neck/head/eye/Camera3D" instance=ExtResource("2_d11yd")]
+[node name="gun_pivot" type="Node3D" parent="neck/head/eye/Camera3D"]
+
+[node name="Gun" parent="neck/head/eye/Camera3D/gun_pivot" instance=ExtResource("2_d11yd")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.244, 1.613, -0.531)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../neck/head/eye/Camera3D/Gun")
+root_node = NodePath("../neck/head/eye/Camera3D/gun_pivot/Gun")
 libraries = {
 "": SubResource("AnimationLibrary_ctv5v")
 }
