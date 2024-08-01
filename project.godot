@@ -12,12 +12,20 @@ config_version=5
 
 config/name="DunkNation"
 run/main_scene="res://Node/main_menu.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Scripts/global.gd"
+
+[dotnet]
+
+project/assembly_name="DunkNation"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/qodot/plugin.cfg")
 
 [input]
 
