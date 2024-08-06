@@ -45,7 +45,6 @@ var walking = false
 var sprinting = false
 var crouching = false
 var free_looking = false
-var sliding = false
 
 # slide var
 
@@ -82,6 +81,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	gun_anim.play("gun_activate")
 
+func _input(event):
+	if event.is_action_pressed("exit"):
+		get_tree().quit()
 
 func _unhandled_input(event):
 	
@@ -123,15 +125,7 @@ func _physics_process(delta):
 		
 		if not is_on_floor():
 			current_speed = JUMP_VELOCITY
-		
-		# Slide Begin Logic
-		if sprinting && input_dir != Vector2.ZERO:
-			sliding = true
-			slide_timer = slide_timer_max
-			free_looking = true 
-		elif Input.is_action_just_released("crounch"):
-			slide_timer = 0
-			sliding = false
+
 		
 		walking = false
 		sprinting = false
@@ -186,12 +180,8 @@ func _physics_process(delta):
 		
 		
 	# Handle Sliding Logic
-	
-	if sliding:
-		slide_timer -= delta
-		if slide_timer <= 0:
-			sliding = false
-			free_looking = false
+
+			
 			
 			
 	# handle head bob
@@ -205,7 +195,7 @@ func _physics_process(delta):
 		head_bobbing_current_intesity = head_bobbing_crouching_intensity
 		head_bobbing_index += head_bobbing_crouching_speed * delta
 		
-	if is_on_floor() && !sliding && input_dir !=Vector2.ZERO:
+	if is_on_floor() && input_dir !=Vector2.ZERO:
 		head_bobbing_vector.y = sin(head_bobbing_index)
 		head_bobbing_vector.x = sin(head_bobbing_index/2)+0.5
 		
@@ -230,7 +220,6 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		sliding = false
 		
 
 
@@ -240,10 +229,6 @@ func _physics_process(delta):
 
 	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-		
-	if sliding:
-		current_speed = (slide_timer + 0.4) * slide_speed
-
 	
 	if direction:
 		velocity.x = direction.x * current_speed
@@ -252,5 +237,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
+		
+	print(current_speed)
 
 	move_and_slide()
