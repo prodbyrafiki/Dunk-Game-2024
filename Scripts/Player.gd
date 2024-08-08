@@ -45,12 +45,14 @@ var walking = false
 var sprinting = false
 var crouching = false
 var free_looking = false
+var sliding = false
 
 # slide var
 
 var slide_timer = 0.0
-var slide_timer_max = 1
+var slide_timer_max = 1.0
 var slide_speed = 10 
+var slide_vector = Vector2.ZERO
 
 
 # head bobbing var
@@ -123,13 +125,23 @@ func _physics_process(delta):
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
 		
+
 		if not is_on_floor():
 			current_speed = JUMP_VELOCITY
-
+			
+		# Slide Begin Logic
+		if sprinting && input_dir != Vector2.ZERO:
+			sliding = true
+			slide_timer = slide_timer_max
+			free_looking = true 
+			
 		
 		walking = false
 		sprinting = false
 		crouching = true
+	elif Input.is_action_just_released("crounch"):
+			slide_timer = 0
+			sliding = false
 	
 	elif !ray_cast_3d.is_colliding():
 		
@@ -164,6 +176,20 @@ func _physics_process(delta):
 		free_looking = false
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerp_speed)
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
+		
+		
+
+	# Handle Sliding Logic
+	
+	if sliding:
+		slide_timer -= delta
+		if slide_timer <= 0:
+			sliding = false
+			free_looking = false
+		print("Check")
+			
+			
+
 		
 		
 		
@@ -230,14 +256,19 @@ func _physics_process(delta):
 	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	
+	if sliding:
+		current_speed = (slide_timer + 0.4) * slide_speed
+
+	
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
-
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 		
-	print(current_speed)
+	print(slide_timer)
+
 
 	move_and_slide()
