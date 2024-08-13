@@ -6,13 +6,15 @@ extends CharacterBody3D
 @onready var eyes = $neck/head/eye
 @onready var standing_collision_shape = $StandingCollisionShape
 @onready var crouching_collision_shape = $CrouchingCollisionShape
-@onready var ray_cast_3d = $RayCast3D
+@onready var ray_cast_3d = $CrouchingRay
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
 @onready var gun_anim = $AnimationPlayer
 @onready var gun_pivot = $neck/head/eye/Camera3D/gun_pivot
 
 @onready var gun_barrel = $neck/head/eye/Camera3D/gun_pivot/Gun/RayCast3D
+@onready var ledge_vertical_detection = $neck/head/eye/LedgeDetect/LedgeVerticalDetection
+@onready var ledge_player_detect = $neck/head/eye/LedgeDetect/LedgePlayerDetect
 
 
 #interaction
@@ -25,9 +27,9 @@ extends CharacterBody3D
 
 # speeds
 var current_speed = 5.0
-const sprinting_speed = 8.0
-const walking_speed = 5.0
-const crouching_speed = 3.0
+const sprinting_speed = 12.0
+const walking_speed = 9.0
+const crouching_speed = 7.0
 var lerp_speed = 10.0
 const JUMP_VELOCITY = 5.0
 var crouching_depth = -0.5
@@ -51,7 +53,7 @@ var sliding = false
 
 var slide_timer = 0.0
 var slide_timer_max = 1.0
-var slide_speed = 10 
+var slide_speed = 15
 var slide_vector = Vector2.ZERO
 
 
@@ -106,6 +108,13 @@ func _unhandled_input(event):
 				camera.rotate_x(-event.relative.y * sensitivity / 4)
 				camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 				camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(0), deg_to_rad(0))
+				
+
+		
+
+	
+	
+	
 			
 			
 
@@ -125,9 +134,6 @@ func _physics_process(delta):
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
 		
-
-		if not is_on_floor():
-			current_speed = JUMP_VELOCITY
 			
 		# Slide Begin Logic
 		if sprinting && input_dir != Vector2.ZERO:
@@ -186,7 +192,7 @@ func _physics_process(delta):
 		if slide_timer <= 0:
 			sliding = false
 			free_looking = false
-		print("Check")
+
 			
 			
 
@@ -203,10 +209,7 @@ func _physics_process(delta):
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
 		
-		
-		
-	# Handle Sliding Logic
-
+	
 			
 			
 			
@@ -239,13 +242,23 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta*lerp_speed)
 
+	if ledge_vertical_detection.is_colliding() && ledge_player_detect.is_colliding() and not is_on_floor():
+		velocity.y = 0
+	
+	if ledge_vertical_detection.is_colliding() && ledge_player_detect.is_colliding() and Input.is_action_pressed("jump"):
+		velocity.y = JUMP_VELOCITY
+	
+		print("Hello ")
+		
+		#bool for ledge grab
+		#half velocity
 	# Add the gravity.
-	if not is_on_floor():
+	elif not is_on_floor():
 		velocity.y -= gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = velocity.y + JUMP_VELOCITY
 		
 
 
@@ -256,19 +269,34 @@ func _physics_process(delta):
 	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	
-	if sliding:
-		current_speed = (slide_timer + 0.4) * slide_speed
+
 
 	
-	if direction:
+	if direction && is_on_floor():
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 		
 	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
+		velocity.x = lerp(velocity.x, direction.x * current_speed, 0.05)
+		velocity.z = lerp(velocity.z, direction.z * current_speed, 0.05)
+	
+	if sliding:
+		current_speed = (slide_timer + 0.4) * slide_speed
 		
-	print(slide_timer)
+	else:
+		if is_on_floor():
+			velocity.x = lerp(velocity.x, 0.0, 0.1)
+			velocity.z = lerp(velocity.z, 0.0, 0.1)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, 0.01)
+			velocity.z = lerp(velocity.z, 0.0, 0.01)
+		
+		
+		
+
 
 
 	move_and_slide()
+	
+	
+

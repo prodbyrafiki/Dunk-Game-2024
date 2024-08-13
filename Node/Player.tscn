@@ -1,12 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbljwsbyy00b"]
+[gd_scene load_steps=14 format=3 uid="uid://cbljwsbyy00b"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_jemhm"]
 [ext_resource type="PackedScene" uid="uid://nw2j0yx3h7hw" path="res://Node/gun.tscn" id="2_d11yd"]
+[ext_resource type="Shader" path="res://Scripts/Player.gdshader" id="2_kp3bo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b7lsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0kx3e"]
 height = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqk14"]
+render_priority = 0
+shader = ExtResource("2_kp3bo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j4bj7"]
+material = SubResource("ShaderMaterial_hqk14")
+size = Vector2(10, 10)
 
 [sub_resource type="Animation" id="Animation_q7r1f"]
 length = 0.001
@@ -193,7 +202,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748822, 0)
 shape = SubResource("CapsuleShape3D_0kx3e")
 disabled = true
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="CrouchingRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
 
 [node name="neck" type="Node3D" parent="."]
@@ -205,11 +214,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="neck/head/eye"]
 
-[node name="gun_pivot" type="Node3D" parent="neck/head/eye/Camera3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="neck/head/eye/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.805696)
 visible = false
+mesh = SubResource("QuadMesh_j4bj7")
+
+[node name="gun_pivot" type="Node3D" parent="neck/head/eye/Camera3D"]
 
 [node name="Gun" parent="neck/head/eye/Camera3D/gun_pivot" instance=ExtResource("2_d11yd")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.244, 1.613, -0.531)
+
+[node name="LedgeDetect" type="Node3D" parent="neck/head/eye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="LedgeVerticalDetection" type="RayCast3D" parent="neck/head/eye/LedgeDetect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93087, -1.08212)
+
+[node name="LedgePlayerDetect" type="RayCast3D" parent="neck/head/eye/LedgeDetect"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5305, 0)
+
+[node name="StepUp Detect" type="RayCast3D" parent="neck/head/eye/LedgeDetect"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.847759, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../neck/head/eye/Camera3D/gun_pivot/Gun")
