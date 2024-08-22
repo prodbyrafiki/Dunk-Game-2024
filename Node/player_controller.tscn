@@ -8,6 +8,8 @@
 
 [node name="PlayerController" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 script = ExtResource("1_4pqwd")
+TILT_LOWER_LIMIT = null
+TILT_UPPER_LIMIT = null
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -41,6 +41,15 @@ var direction = Vector3.ZERO
 var free_look_tilt = 6
 
 
+# Dash Variables
+
+const dash_velocity = 10
+var dash_timer = 0.0
+const dash_duration = 0.1
+var dash_direction
+var is_dashing = false
+var has_dashed = false
+
 
 #states
 var walking = false
@@ -193,11 +202,6 @@ func _physics_process(delta):
 			sliding = false
 			free_looking = false
 
-			
-			
-
-		
-		
 		
 #Handle Shooting
 
@@ -209,9 +213,7 @@ func _physics_process(delta):
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
 		
-	
-			
-			
+
 			
 	# handle head bob
 	if sprinting:
@@ -246,7 +248,7 @@ func _physics_process(delta):
 		velocity.y = 0
 	
 	if ledge_vertical_detection.is_colliding() && ledge_player_detect.is_colliding() and Input.is_action_pressed("jump"):
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * 1.5
 	
 		print("Hello ")
 		
@@ -259,8 +261,6 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = velocity.y + JUMP_VELOCITY
-		
-
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -268,10 +268,7 @@ func _physics_process(delta):
 
 	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	
 
-
-	
 	if direction && is_on_floor():
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
@@ -291,12 +288,18 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, 0.0, 0.01)
 			velocity.z = lerp(velocity.z, 0.0, 0.01)
 		
-		
-		
+#Ablilites
+
+	if Input.is_action_just_pressed("ability"):
+	
+		is_dashing = true
+		$dash_timer.start(dash_duration)
+		dash_direction = transform.basis.z
+		has_dashed = true
+
 
 
 
 	move_and_slide()
 	
 	
-
