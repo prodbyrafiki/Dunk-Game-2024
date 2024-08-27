@@ -25,14 +25,12 @@ extends CharacterBody3D
 
 
 
-# speeds
+@export_category("Movement")
 var current_speed = 5.0
-const sprinting_speed = 12.0
-const walking_speed = 9.0
-const crouching_speed = 7.0
-var lerp_speed = 10.0
-const JUMP_VELOCITY = 5.0
-var crouching_depth = -0.5
+@export var sprinting_speed = 12.0
+@export var walking_speed = 9.0
+@export var crouching_speed = 7.0
+@export var JUMP_VELOCITY = 5.0
 
 # input var
 var sensitivity = 0.003
@@ -42,13 +40,18 @@ var free_look_tilt = 6
 
 
 # Dash Variables
+var dashing: bool = false
+var can_dash: bool = true
+@export var dash_duration: float = 0.2
+@export var dash_cooldown: float = 0.8
+var can_reload_dash: bool = false
+@export var dash_speed: float = 40.0
+@onready var dash_timer = $DashTimer
 
-const dash_velocity = 10
-var dash_timer = 0.0
-const dash_duration = 0.1
-var dash_direction
-var is_dashing = false
-var has_dashed = false
+
+
+var lerp_speed = 10.0
+var crouching_depth = -0.5
 
 
 #states
@@ -261,19 +264,31 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = velocity.y + JUMP_VELOCITY
+		
+		
+	if Input.is_action_just_pressed("dash") and not dashing and can_dash and not is_on_floor():
+		dashing = true 
+		can_dash = false
+		dash_timer.start(dash_duration)
+		velocity.y = 0.0
+		var direction = camera.global_basis
+		velocity = -direction.z * dash_speed
+		print("work")
+		can_dash = true
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
 
-	direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 
-	if direction && is_on_floor():
+	if direction && is_on_floor() && not dashing:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 		
-	else:
+	elif not dashing:
 		velocity.x = lerp(velocity.x, direction.x * current_speed, 0.05)
 		velocity.z = lerp(velocity.z, direction.z * current_speed, 0.05)
 	
@@ -290,12 +305,7 @@ func _physics_process(delta):
 		
 #Ablilites
 
-	if Input.is_action_just_pressed("ability"):
-	
-		is_dashing = true
-		$dash_timer.start(dash_duration)
-		dash_direction = transform.basis.z
-		has_dashed = true
+
 
 
 
@@ -303,3 +313,13 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
+
+
+func _on_dash_timer_timeout() -> void:
+	velocity.y = 0.0
+	dashing = false
+	print("balah")
+
+
+func _on_dash_cooldown_timeout():
+	can_reload_dash = true
