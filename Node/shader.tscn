@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgqlh02hr0dpp"]
+
+[ext_resource type="Shader" path="res://Node/jaja.gdshader" id="1_8s545"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptqyc"]
+shader = ExtResource("1_8s545")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.1176, 0.1176, 0.1176, 1)
+shader_parameter/dot_color = Color(0.2156, 0.2156, 0.2156, 1)
+shader_parameter/resolution = null
+shader_parameter/offset = null
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
+[node name="Shader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ptqyc")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(14.0113, 9.34276)

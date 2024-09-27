@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://xyp5a1pytyg5"
+path="res://.godot/imported/heloultra.9.map-fbe77ff7ef037b2a5bbb9677d4d2f800.tres"
+
+[deps]
+
+source_file="res://Maps/autosave/heloultra.9.map"
+dest_files=["res://.godot/imported/heloultra.9.map-fbe77ff7ef037b2a5bbb9677d4d2f800.tres"]
+
+[params]
+

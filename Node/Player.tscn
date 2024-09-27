@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbljwsbyy00b"]
+[gd_scene load_steps=16 format=3 uid="uid://cbljwsbyy00b"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_jemhm"]
+[ext_resource type="Shader" path="res://Node/Nuts.gdshader" id="2_bmbde"]
 [ext_resource type="PackedScene" uid="uid://nw2j0yx3h7hw" path="res://Node/gun.tscn" id="2_d11yd"]
-[ext_resource type="Shader" path="res://Scripts/Player.gdshader" id="2_kp3bo"]
+[ext_resource type="Texture2D" uid="uid://dfihneyk3hbfv" path="res://shader/midnight-ablaze-32x.png" id="3_r7ogr"]
+[ext_resource type="Texture2D" uid="uid://g4naxpp6t7sg" path="res://shader/apollo-32x.png" id="4_emyje"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b7lsp"]
 
@@ -10,8 +12,13 @@
 height = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqk14"]
-render_priority = 0
-shader = ExtResource("2_kp3bo")
+shader = ExtResource("2_bmbde")
+shader_parameter/u_bit_depth = 4
+shader_parameter/u_contrast = null
+shader_parameter/u_offset = null
+shader_parameter/u_dither_size = 4
+shader_parameter/u_dither_tex = ExtResource("3_r7ogr")
+shader_parameter/u_color_tex = ExtResource("4_emyje")
 
 [sub_resource type="QuadMesh" id="QuadMesh_j4bj7"]
 material = SubResource("ShaderMaterial_hqk14")
@@ -220,6 +227,7 @@ visible = false
 mesh = SubResource("QuadMesh_j4bj7")
 
 [node name="gun_pivot" type="Node3D" parent="neck/head/eye/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.190398)
 
 [node name="Gun" parent="neck/head/eye/Camera3D/gun_pivot" instance=ExtResource("2_d11yd")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.244, 1.613, -0.531)

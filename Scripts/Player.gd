@@ -47,6 +47,7 @@ var can_dash: bool = true
 var can_reload_dash: bool = false
 @export var dash_speed: float = 40.0
 @onready var dash_timer = $DashTimer
+var cam_dash_tween: Tween
 
 
 
@@ -135,6 +136,18 @@ func _physics_process(delta):
 	#movement input get
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
+	if input_dir.x < 0:
+		print("helloworld")
+		camera_3d.rotation.z = lerp(camera_3d.rotation.z, deg_to_rad(5.0), delta * lerp_speed)
+	else:
+		camera_3d.rotation.z = lerp(camera_3d.rotation.z,0.0, delta * lerp_speed)
+	
+	if input_dir.x > 0:
+		print("helloworld")
+		camera_3d.rotation.z = lerp(camera_3d.rotation.z, deg_to_rad(-5.0), delta * lerp_speed)	
+	else:
+		camera_3d.rotation.z = lerp(camera_3d.rotation.z,0.0, delta * lerp_speed)
+	
 	# handle movement 
 	
 	# Crouchinng 
@@ -209,12 +222,8 @@ func _physics_process(delta):
 #Handle Shooting
 
 	if Input.is_action_pressed("shoot"):
-		if !gun_anim.is_playing():
-			gun_anim.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().add_child(instance)
+		shoot()
+
 		
 
 			
@@ -266,15 +275,18 @@ func _physics_process(delta):
 		velocity.y = velocity.y + JUMP_VELOCITY
 		
 		
-	if Input.is_action_just_pressed("dash") and not dashing and can_dash and not is_on_floor():
+	if Input.is_action_just_pressed("dash") and not dashing and can_dash:
 		dashing = true 
 		can_dash = false
 		dash_timer.start(dash_duration)
+		camera_zoom_out(dash_duration)
 		velocity.y = 0.0
-		var direction = camera.global_basis
-		velocity = -direction.z * dash_speed
+		var dash_direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		velocity = dash_direction * dash_speed
 		print("work")
 		can_dash = true
+		
+		#if want to make only sideways dash then add a if check for whether there is input from forward or back and edit
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -305,14 +317,28 @@ func _physics_process(delta):
 		
 #Ablilites
 
-
-
-
-
-
 	move_and_slide()
 	
 	
+func shoot():
+	
+	if !gun_anim.is_playing():
+		gun_anim.play("shoot")
+		instance = bullet.instantiate()
+		instance.position = gun_barrel.global_position
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+
+
+func camera_zoom_out(duration: float) -> void:
+	if cam_dash_tween and cam_dash_tween.is_running():
+		cam_dash_tween.kill()
+	
+	if dashing:
+		cam_dash_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		cam_dash_tween.tween_property(camera, "fov", 90.0, 0.3)
+		cam_dash_tween.tween_interval(duration-0.2)
+		cam_dash_tween.tween_property(camera, "fov", 75.0, 0.4)
 
 
 func _on_dash_timer_timeout() -> void:

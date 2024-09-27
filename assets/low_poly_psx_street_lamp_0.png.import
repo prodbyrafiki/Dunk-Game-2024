@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmnhpdl0bdc7w"
-path.s3tc="res://.godot/imported/GRID_1C.PNG-f291fab04d77b25146de0cce1eae0398.s3tc.ctex"
+uid="uid://dbrgjjpu1k8gs"
+path.s3tc="res://.godot/imported/low_poly_psx_street_lamp_0.png-4edc0c36a5b62d57b2522313b64245d3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "1f5744cb5e7efac628fed1f29470dce6"
+}
 
 [deps]
 
-source_file="res://Textures/TEXTURES/GRID_1C.PNG"
-dest_files=["res://.godot/imported/GRID_1C.PNG-f291fab04d77b25146de0cce1eae0398.s3tc.ctex"]
+source_file="res://assets/low_poly_psx_street_lamp_0.png"
+dest_files=["res://.godot/imported/low_poly_psx_street_lamp_0.png-4edc0c36a5b62d57b2522313b64245d3.s3tc.ctex"]
 
 [params]
 
