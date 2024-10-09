@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1naeyh6skq6b"
-path="res://.godot/imported/TECH_4F.PNG-6fd9c4e3420eef9468d34f7b1f8c89b0.ctex"
+path.s3tc="res://.godot/imported/TECH_4F.PNG-6fd9c4e3420eef9468d34f7b1f8c89b0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/TEXTURES/TECH_4F.PNG"
-dest_files=["res://.godot/imported/TECH_4F.PNG-6fd9c4e3420eef9468d34f7b1f8c89b0.ctex"]
+dest_files=["res://.godot/imported/TECH_4F.PNG-6fd9c4e3420eef9468d34f7b1f8c89b0.s3tc.ctex"]
 
 [params]
 

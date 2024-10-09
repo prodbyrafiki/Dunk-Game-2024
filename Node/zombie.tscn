@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://cvs1tlwgnimr4"]
 
-[ext_resource type="Texture2D" uid="uid://7jp5n55lkber" path="res://assets/untitled_whiteclown_diffuse.png" id="1_2p2py"]
-[ext_resource type="Texture2D" uid="uid://8kirgt2ou6yi" path="res://assets/untitled_whiteclown_normal.png" id="2_ugnn4"]
+[ext_resource type="Texture2D" uid="uid://7jp5n55lkber" path="res://assets/New folder/untitled_whiteclown_diffuse.png" id="1_2p2py"]
+[ext_resource type="Texture2D" uid="uid://8kirgt2ou6yi" path="res://assets/New folder/untitled_whiteclown_normal.png" id="2_ugnn4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgifr"]
 resource_name = "WhiteClown_material"

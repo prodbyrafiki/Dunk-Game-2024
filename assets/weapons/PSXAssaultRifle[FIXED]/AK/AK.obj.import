@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dl5cxfiiaspxs"
+path="res://.godot/imported/AK.obj-9a9173b7d5a2d3f4e7ddaa55a84f50fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/AK.obj-9a9173b7d5a2d3f4e7ddaa55a84f50fb.mesh"]
+
+source_file="res://assets/weapons/PSXAssaultRifle[FIXED]/AK/AK.obj"
+dest_files=["res://.godot/imported/AK.obj-9a9173b7d5a2d3f4e7ddaa55a84f50fb.mesh", "res://.godot/imported/AK.obj-9a9173b7d5a2d3f4e7ddaa55a84f50fb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

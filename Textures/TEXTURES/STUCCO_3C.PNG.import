@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvbbgy0idr0l1"
-path="res://.godot/imported/STUCCO_3C.PNG-75246af0a78be9cf5cb27b5acc5d358a.ctex"
+path.s3tc="res://.godot/imported/STUCCO_3C.PNG-75246af0a78be9cf5cb27b5acc5d358a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/TEXTURES/STUCCO_3C.PNG"
-dest_files=["res://.godot/imported/STUCCO_3C.PNG-75246af0a78be9cf5cb27b5acc5d358a.ctex"]
+dest_files=["res://.godot/imported/STUCCO_3C.PNG-75246af0a78be9cf5cb27b5acc5d358a.s3tc.ctex"]
 
 [params]
 

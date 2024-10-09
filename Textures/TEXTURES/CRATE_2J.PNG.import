@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5mubx4076bvl"
-path="res://.godot/imported/CRATE_2J.PNG-d9b6b9d7ddb9aecca1ea9903b437fdbf.ctex"
+path.s3tc="res://.godot/imported/CRATE_2J.PNG-d9b6b9d7ddb9aecca1ea9903b437fdbf.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/TEXTURES/CRATE_2J.PNG"
-dest_files=["res://.godot/imported/CRATE_2J.PNG-d9b6b9d7ddb9aecca1ea9903b437fdbf.ctex"]
+dest_files=["res://.godot/imported/CRATE_2J.PNG-d9b6b9d7ddb9aecca1ea9903b437fdbf.s3tc.ctex"]
 
 [params]
 

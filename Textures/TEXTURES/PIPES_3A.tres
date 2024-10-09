@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dw4mej7uwl0dd"]
+
+[ext_resource type="Texture2D" uid="uid://ehy3tapi0juc" path="res://textures/TEXTURES/PIPES_3A.png" id="1_1xpmw"]
+
+[resource]
+albedo_texture = ExtResource("1_1xpmw")
+metallic_specular = 0.0
+texture_filter = 2

@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv7unx7kl4vvh"
-path="res://.godot/imported/kloppenheim_02_puresky_8k.hdr-3ac50adf251ff8b68e94a36ac5239b87.ctex"
+path.bptc="res://.godot/imported/kloppenheim_02_puresky_8k.hdr-3ac50adf251ff8b68e94a36ac5239b87.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/kloppenheim_02_puresky_8k.hdr"
-dest_files=["res://.godot/imported/kloppenheim_02_puresky_8k.hdr-3ac50adf251ff8b68e94a36ac5239b87.ctex"]
+dest_files=["res://.godot/imported/kloppenheim_02_puresky_8k.hdr-3ac50adf251ff8b68e94a36ac5239b87.bptc.ctex"]
 
 [params]
 

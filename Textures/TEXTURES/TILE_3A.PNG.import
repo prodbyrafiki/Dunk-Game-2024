@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1x3o0o3xc7hk"
-path="res://.godot/imported/TILE_3A.PNG-de6c7ab44386505f186e6ccb25f0261d.ctex"
+path.s3tc="res://.godot/imported/TILE_3A.PNG-de6c7ab44386505f186e6ccb25f0261d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/TEXTURES/TILE_3A.PNG"
-dest_files=["res://.godot/imported/TILE_3A.PNG-de6c7ab44386505f186e6ccb25f0261d.ctex"]
+dest_files=["res://.godot/imported/TILE_3A.PNG-de6c7ab44386505f186e6ccb25f0261d.s3tc.ctex"]
 
 [params]
 

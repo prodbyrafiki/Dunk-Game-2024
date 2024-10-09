@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b081ar8j3iprh"
-path="res://.godot/imported/COBBLES_1C.PNG-04fd4176ef4b6873c4a815fcf76364ef.ctex"
+path.s3tc="res://.godot/imported/COBBLES_1C.PNG-04fd4176ef4b6873c4a815fcf76364ef.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/TEXTURES/COBBLES_1C.PNG"
-dest_files=["res://.godot/imported/COBBLES_1C.PNG-04fd4176ef4b6873c4a815fcf76364ef.ctex"]
+dest_files=["res://.godot/imported/COBBLES_1C.PNG-04fd4176ef4b6873c4a815fcf76364ef.s3tc.ctex"]
 
 [params]
 

@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdmkrfbppvh33"
-path="res://.godot/imported/overcast_soil_puresky_8k.hdr-40c03e995fa959920cfbdb751f9739eb.ctex"
+path.bptc="res://.godot/imported/overcast_soil_puresky_8k.hdr-40c03e995fa959920cfbdb751f9739eb.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/overcast_soil_puresky_8k.hdr"
-dest_files=["res://.godot/imported/overcast_soil_puresky_8k.hdr-40c03e995fa959920cfbdb751f9739eb.ctex"]
+dest_files=["res://.godot/imported/overcast_soil_puresky_8k.hdr-40c03e995fa959920cfbdb751f9739eb.bptc.ctex"]
 
 [params]
 

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://g6fwfoc4q7mk"
+path="res://.godot/imported/G3.obj-deff206784fb2e2a346498e1d7c1de78.mesh"
+
+[deps]
+
+files=["res://.godot/imported/G3.obj-deff206784fb2e2a346498e1d7c1de78.mesh"]
+
+source_file="res://assets/weapons/PSXAssaultRifle[FIXED]/G3/G3.obj"
+dest_files=["res://.godot/imported/G3.obj-deff206784fb2e2a346498e1d7c1de78.mesh", "res://.godot/imported/G3.obj-deff206784fb2e2a346498e1d7c1de78.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

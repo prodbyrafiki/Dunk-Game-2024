@@ -16,12 +16,12 @@ emission_energy_multiplier = 4.25
 script = ExtResource("1_h8fig")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.09278e-09, -0.025, 0, 0.025, -1.09278e-09, 0, 0, 0, 0.025, 0, 0, 0)
+transform = Transform3D(4.77672e-17, -3.63694e-08, -0.025, -0.025, -3.63694e-08, 0, -1.09279e-09, 0.832035, -1.09278e-09, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_yggh0")
 mesh = SubResource("CylinderMesh_er82u")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(-8.96083e-09, -0.205, 0, 0.205, -8.96083e-09, 0, 0, 0, 0.205, 0, 0, 0)
+transform = Transform3D(3.9169e-16, 4.64947e-08, -0.205, 0.205, -4.64947e-08, 0, -8.96083e-09, -1.06367, -8.96083e-09, 0, 0, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0335684, 0, 0)
