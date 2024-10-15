@@ -1,5 +1,7 @@
 extends Node
 
+var player : CharacterBody3D = null
+
 
 func _input(event):
 	if event.is_action_pressed("return"):

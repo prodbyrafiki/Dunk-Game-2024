@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bismgyuhpdcs0"]
+
+[ext_resource type="PackedScene" uid="uid://cbljwsbyy00b" path="res://Node/Player.tscn" id="4_of88v"]
+[ext_resource type="PackedScene" uid="uid://ki25he3d5s8w" path="res://Node/enemybody.tscn" id="5_1mpfi"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_5tgan"]
+vertices = PackedVector3Array(-19, 1, 0, -19, 1, 19, 0, 1, 19, 0, 1, 0)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("4_of88v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.21767, 4.91734, 15.2732)
+
+[node name="EnemyBody" parent="." instance=ExtResource("5_1mpfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4477, 9.94018, 26.6497)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_5tgan")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0, 9.5)
+size = Vector3(20, 1, 20)

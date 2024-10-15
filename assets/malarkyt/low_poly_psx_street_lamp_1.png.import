@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7jp5n55lkber"
-path.s3tc="res://.godot/imported/untitled_whiteclown_diffuse.png-fe10a2643d4ba1521e06c5ac4bf5f6b1.s3tc.ctex"
+uid="uid://ee86u4r5ltbb"
+path.s3tc="res://.godot/imported/low_poly_psx_street_lamp_1.png-c0c42c021bf50cd9a09985b59fa8f795.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d64ef46d7a64a9ce6d4c170e69ce1ac2"
+"md5": "3fa5a925c1fb093b844b96c9608e3500"
 }
 
 [deps]
 
-source_file="res://assets/New folder/untitled_whiteclown_diffuse.png"
-dest_files=["res://.godot/imported/untitled_whiteclown_diffuse.png-fe10a2643d4ba1521e06c5ac4bf5f6b1.s3tc.ctex"]
+source_file="res://assets/malarkyt/low_poly_psx_street_lamp_1.png"
+dest_files=["res://.godot/imported/low_poly_psx_street_lamp_1.png-c0c42c021bf50cd9a09985b59fa8f795.s3tc.ctex"]
 
 [params]
 

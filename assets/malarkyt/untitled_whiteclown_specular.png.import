@@ -2,16 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ytee4ey3cis"
-path="res://.godot/imported/default_texture.png-9fec97e8ab973474be278527917dd41b.ctex"
+uid="uid://bl3rii68qunsd"
+path="res://.godot/imported/untitled_whiteclown_specular.png-1b52612a9c021f3fcf9164763846cc41.ctex"
 metadata={
 "vram_texture": false
+}
+generator_parameters={
+"md5": "139c3445fdde6fa7bab00b44dfdd809a"
 }
 
 [deps]
 
-source_file="res://FuncGodot Manual/images/default_texture.png"
-dest_files=["res://.godot/imported/default_texture.png-9fec97e8ab973474be278527917dd41b.ctex"]
+source_file="res://assets/malarkyt/untitled_whiteclown_specular.png"
+dest_files=["res://.godot/imported/untitled_whiteclown_specular.png-1b52612a9c021f3fcf9164763846cc41.ctex"]
 
 [params]
 
@@ -21,7 +24,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

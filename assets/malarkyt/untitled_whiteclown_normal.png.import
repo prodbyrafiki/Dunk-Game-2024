@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ee86u4r5ltbb"
-path.s3tc="res://.godot/imported/low_poly_psx_street_lamp_1.png-81377e4ea514873e563ed828949a644a.s3tc.ctex"
+uid="uid://8kirgt2ou6yi"
+path.s3tc="res://.godot/imported/untitled_whiteclown_normal.png-bebc7305b75e2e327a23ab61646c38fa.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3fa5a925c1fb093b844b96c9608e3500"
+"md5": "f790946e533d1fc27c7b58b8ca33047a"
 }
 
 [deps]
 
-source_file="res://assets/New folder/low_poly_psx_street_lamp_1.png"
-dest_files=["res://.godot/imported/low_poly_psx_street_lamp_1.png-81377e4ea514873e563ed828949a644a.s3tc.ctex"]
+source_file="res://assets/malarkyt/untitled_whiteclown_normal.png"
+dest_files=["res://.godot/imported/untitled_whiteclown_normal.png-bebc7305b75e2e327a23ab61646c38fa.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/untitled_whiteclown_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

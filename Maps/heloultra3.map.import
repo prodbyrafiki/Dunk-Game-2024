@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://buc2s6nw871wt"
+path="res://.godot/imported/heloultra3.map-d15e045b428e16a24227f34f02e5d74a.tres"
+
+[deps]
+
+source_file="res://Maps/heloultra3.map"
+dest_files=["res://.godot/imported/heloultra3.map-d15e045b428e16a24227f34f02e5d74a.tres"]
+
+[params]
+

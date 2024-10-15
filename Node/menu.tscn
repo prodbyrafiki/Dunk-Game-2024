@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyciufsf3858n"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_8uhmd"]
+[ext_resource type="Theme" uid="uid://e1ypkhhi0hhi" path="res://assets/theme/MinimalUI.tres" id="2_7xhh7"]
+[ext_resource type="FontFile" uid="uid://1667kkqhta71" path="res://assets/theme/kenvector_future.ttf" id="3_v8b0v"]
+
+[sub_resource type="Animation" id="Animation_4c7a4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.085]
+}
+
+[sub_resource type="Animation" id="Animation_d7hs7"]
+resource_name = "Typing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.085, 0.13, 0.22, 0.365, 0.46, 0.567, 0.687, 0.813, 0.903, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kprpm"]
+_data = {
+"RESET": SubResource("Animation_4c7a4"),
+"Typing": SubResource("Animation_d7hs7")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8uhmd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 3
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -148.0
+offset_right = 200.0
+offset_bottom = -78.0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("2_7xhh7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_v8b0v")
+text = "Play"
+
+[node name="Options" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_v8b0v")
+text = "Options"
+
+[node name="Exit" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_v8b0v")
+text = "Exit"
+
+[node name="Label" type="Label" parent="ColorRect"]
+self_modulate = Color(1, 1, 1, 0.458824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -111.0
+offset_right = 63.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_v8b0v")
+theme_override_font_sizes/font_size = 140
+text = "DunkArena
+DunkArena
+DunkArena"
+horizontal_alignment = 1
+visible_characters = 2
+visible_ratio = 0.085
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect/Label")
+libraries = {
+"": SubResource("AnimationLibrary_kprpm")
+}
+autoplay = "Typing"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -51,6 +51,7 @@ var cam_dash_tween: Tween
 
 
 
+
 var lerp_speed = 10.0
 var crouching_depth = -0.5
 
@@ -90,6 +91,9 @@ var bullet = load("res://Node/bullet.tscn")
 var instance
 
 
+signal player_hit
+const HIT_STAGGER = 8.0
+
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -97,6 +101,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	gun_anim.play("gun_activate")
+	Global.player = self
 
 func _input(event):
 	if event.is_action_pressed("exit"):
@@ -137,13 +142,11 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	
 	if input_dir.x < 0:
-		print("helloworld")
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, deg_to_rad(5.0), delta * lerp_speed)
 	else:
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z,0.0, delta * lerp_speed)
 	
 	if input_dir.x > 0:
-		print("helloworld")
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, deg_to_rad(-5.0), delta * lerp_speed)	
 	else:
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z,0.0, delta * lerp_speed)
@@ -349,3 +352,7 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_dash_cooldown_timeout():
 	can_reload_dash = true
+	
+func hit(dir):
+	emit_signal("player_hit")
+	velocity += dir * HIT_STAGGER

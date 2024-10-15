@@ -1,15 +1,34 @@
-# MainGame.gd
 extends Node3D
+@onready var hit_rect = $UI/HitRect
+@onready var spawns = $Spawns
+@onready var navigation_region = $Enviroment/NavigationRegion3D
 
-@export var player: Node3D
-@export var spinner_scene: PackedScene
-
-var spinner: Node3D
+var enemy = preload("res://Node/enemybody.tscn")
+var instance
 
 func _ready():
-	setup_spinner()
+	randomize()
 
-func setup_spinner():
-	spinner = spinner_scene.instance()
-	add_child(spinner)
-	spinner.global_transform.origin = Vector3(0, 1, 0) # Position the spinner in the scene
+
+func _on_player_player_hit():
+	hit_rect.visible = true
+	await get_tree().create_timer(0.2).timeout
+	hit_rect.visible = false
+	
+	
+func _get_random_child(parent_node):
+	var random_id = randi() % parent_node.get_child_count()
+	return parent_node.get_child(random_id)
+
+
+func _on_enemy_spawn_timer_timeout():
+	if spawns.get_child_count() == 0:
+		print("No spawn points found!")
+		return
+
+	var spawn_point = _get_random_child(spawns).global_position
+	print("Spawning at:", spawn_point)  # Check spawn point position
+
+	var instance = enemy.instantiate()  
+	instance.global_position = spawn_point
+	navigation_region.add_child(instance)

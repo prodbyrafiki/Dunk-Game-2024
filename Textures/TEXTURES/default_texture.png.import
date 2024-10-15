@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yqyq82hwqumn"
-path="res://.godot/imported/clip.png-d44c6cc674e38a9823b47319b514b33c.ctex"
+uid="uid://b0nxfeg5jkv3y"
+path.s3tc="res://.godot/imported/default_texture.png-7c3651d92b8fe29006fcb31ec3a91937.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://FuncGodot Manual/images/clip.png"
-dest_files=["res://.godot/imported/clip.png-d44c6cc674e38a9823b47319b514b33c.ctex"]
+source_file="res://Textures/TEXTURES/default_texture.png"
+dest_files=["res://.godot/imported/default_texture.png-7c3651d92b8fe29006fcb31ec3a91937.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
