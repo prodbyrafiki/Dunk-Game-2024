@@ -1,30 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://copgufa1o5yfx"]
+[gd_scene load_steps=7 format=3 uid="uid://copgufa1o5yfx"]
 
 [ext_resource type="Script" path="res://Bullet.gd" id="1_h8fig"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yggh0"]
-transparency = 1
-cull_mode = 2
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(0.803922, 0.670588, 0.0431373, 1)
-emission_energy_multiplier = 4.25
+[sub_resource type="BoxMesh" id="BoxMesh_aprjp"]
+size = Vector3(0.03, 0.03, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_er82u"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icl8y"]
+albedo_color = Color(1, 1, 0.254902, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.262745, 1)
+emission_energy_multiplier = 10.39
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12b10"]
+albedo_color = Color(1, 1, 0.172549, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.12549, 1)
+emission_energy_multiplier = 9.9
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_np8jg"]
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1a5b5"]
+size = Vector3(0.04, 0.04, 0.04)
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_h8fig")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.77672e-17, -3.63694e-08, -0.025, -0.025, -3.63694e-08, 0, -1.09279e-09, 0.832035, -1.09278e-09, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_yggh0")
-mesh = SubResource("CylinderMesh_er82u")
+mesh = SubResource("BoxMesh_aprjp")
+surface_material_override/0 = SubResource("StandardMaterial3D_icl8y")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(3.9169e-16, 4.64947e-08, -0.205, 0.205, -4.64947e-08, 0, -8.96083e-09, -1.06367, -8.96083e-09, 0, 0, 0)
+target_position = Vector3(0, 0, 0.53)
+collide_with_areas = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0335684, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.533507)
+material_override = SubResource("StandardMaterial3D_12b10")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_np8jg")
+draw_pass_1 = SubResource("BoxMesh_1a5b5")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

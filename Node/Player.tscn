@@ -161,7 +161,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7et8x"]
 resource_name = "shoot"
-length = 0.2
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -169,7 +169,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.0867429, 0, 0), Vector3(-0.0683587, 0, 0), Vector3(0, 0, 0)]
@@ -181,7 +181,7 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.272895, -0.232064, -0.571547), Vector3(0.272895, -0.232064, -0.455396), Vector3(0.272895, -0.232064, -0.480602), Vector3(0.272895, -0.232064, -0.571547)]
@@ -227,7 +227,7 @@ visible = false
 mesh = SubResource("QuadMesh_j4bj7")
 
 [node name="gun_pivot" type="Node3D" parent="neck/head/eye/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.190398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.126246)
 
 [node name="Gun" parent="neck/head/eye/Camera3D/gun_pivot" instance=ExtResource("2_d11yd")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.244, 1.613, -0.531)

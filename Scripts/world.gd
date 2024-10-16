@@ -28,7 +28,12 @@ func _on_enemy_spawn_timer_timeout():
 
 	var spawn_point = _get_random_child(spawns).global_position
 	print("Spawning at:", spawn_point)  # Check spawn point position
-
-	var instance = enemy.instantiate()  
-	instance.global_position = spawn_point
+	
+	instance = enemy.instantiate()  
+	
 	navigation_region.add_child(instance)
+
+ # Create a new Transform3D and update only the position (origin)
+	var new_transform = instance.global_transform
+	new_transform.origin = spawn_point
+	instance.global_transform = new_transform  # Assign the updated transform

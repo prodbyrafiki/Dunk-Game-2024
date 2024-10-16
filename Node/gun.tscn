@@ -8,7 +8,9 @@
 resource_name = "Malorian"
 cull_mode = 2
 albedo_texture = ExtResource("2_co72t")
-roughness = 0.5
+metallic = 1.0
+roughness = 0.46
+rim_tint = 1.0
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tv7b2"]
@@ -100,5 +102,5 @@ mesh = SubResource("ArrayMesh_rsr63")
 skeleton = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.998134, -0.061066, 0, 0.061066, 0.998134, 0, 0.0665298, -0.292484)
+transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0.0999713, 0.0867953, -0.550627)
 target_position = Vector3(0, 0, -1)
