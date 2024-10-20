@@ -9,6 +9,7 @@ Activate_Anim = "akm_activate"
 Deactivate_Anim = "akm_deactivate"
 Shoot_Anim = "akm_shoot"
 Reload_Anim = "akm_reload"
+Ooa_Anim = "akm_ooa"
 Current_Ammo = 30
 Reserve_Ammo = 60
 Magazine = 30

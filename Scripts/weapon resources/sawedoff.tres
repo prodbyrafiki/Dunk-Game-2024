@@ -9,6 +9,7 @@ Activate_Anim = "sawedoff_activate"
 Deactivate_Anim = "sawedoff_deactivate"
 Shoot_Anim = "sawedoff_shoot"
 Reload_Anim = "sawedoff_reload"
+Ooa_Anim = "sawedoff_ooa"
 Current_Ammo = 2
 Reserve_Ammo = 10
 Magazine = 2

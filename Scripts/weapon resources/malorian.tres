@@ -9,6 +9,7 @@ Activate_Anim = "malorian_activate"
 Deactivate_Anim = "malorian_deactivate"
 Shoot_Anim = "malorian_shoot"
 Reload_Anim = "malorian_reload"
+Ooa_Anim = "malorian_ooa"
 Current_Ammo = 7
 Reserve_Ammo = 21
 Magazine = 7

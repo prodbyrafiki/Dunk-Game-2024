@@ -1,4 +1,4 @@
-[gd_scene load_steps=363 format=4 uid="uid://850rk5hb4saf"]
+[gd_scene load_steps=361 format=4 uid="uid://850rk5hb4saf"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ku6bn"]
 [ext_resource type="Environment" uid="uid://b7ltm2f2r7n58" path="res://tower_inside.tres" id="1_y2kxb"]
@@ -1346,10 +1346,6 @@ points = PackedVector3Array(-28.095, 4, 29.635, -28.095, 5.52, 29.635, -28.19, 5
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oaaye"]
 points = PackedVector3Array(-48, 4, 0, -48, 0, 0, -32, 0, 0, -32, 4, 0, -60, 4, 12, -60, 0, 12, -60, 4, 48, -60, 0, 48, -48, 0, 60, -32, 0, 60, -32, 4, 60, -48, 4, 60)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_4s3u8"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_qdpju"]
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_ku6bn")
 
@@ -2371,15 +2367,6 @@ shape = SubResource("ConvexPolygonShape3D_4vrq6")
 
 [node name="entity_0_brush_17_collision_shape" type="CollisionShape3D" parent="Enviroment/NavigationRegion3D/FuncGodotMap2/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_oaaye")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4977, -6.74678, 115.139)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/RigidBody3D"]
-shape = SubResource("SphereShape3D_4s3u8")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Enviroment/RigidBody3D"]
-mesh = SubResource("SphereMesh_qdpju")
 
 [node name="Lights" type="Node3D" parent="."]
 

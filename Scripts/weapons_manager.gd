@@ -141,5 +141,5 @@ func reload():
 			current_weapon.Reserve_Ammo = current_weapon.Reserve_Ammo - Reload_Ammount
 			emit_signal("Update_Ammo",[current_weapon.Current_Ammo, current_weapon.Reserve_Ammo])
 		else:
-			animation_player.play("RESET")
+			animation_player.play(current_weapon.Ooa_Anim)
 # NEED TO MAKE OUT OF AMMO ANIMATION

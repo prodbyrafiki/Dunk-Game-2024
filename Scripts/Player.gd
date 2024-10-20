@@ -330,7 +330,7 @@ func _physics_process(delta):
 
 
 func camera_zoom_out(duration: float) -> void:
-	if cam_dash_tween and cam_dash_tween.is_running():
+	if cam_dash_tween and cam_dash_tween.is_running():	
 		cam_dash_tween.kill()
 	
 	if dashing:

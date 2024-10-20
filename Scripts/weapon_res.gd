@@ -9,6 +9,8 @@ class_name weapons_res
 @export var Deactivate_Anim : String
 @export var Shoot_Anim : String
 @export var Reload_Anim : String
+@export var Ooa_Anim : String
+
 
 @export var Current_Ammo : int
 @export var Reserve_Ammo  : int
