@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="weapons_res" load_steps=2 format=3 uid="uid://byrvsc4bmbf2k"]
+
+[ext_resource type="Script" path="res://Scripts/weapon_res.gd" id="1_agpaj"]
+
+[resource]
+script = ExtResource("1_agpaj")
+Weapon_Name = "akm"
+Activate_Anim = "akm_activate"
+Deactivate_Anim = "akm_deactivate"
+Shoot_Anim = "akm_shoot"
+Reload_Anim = "akm_reload"
+Current_Ammo = 30
+Reserve_Ammo = 60
+Magazine = 30
+Max_Ammo = 60
+Auto_Fire = true

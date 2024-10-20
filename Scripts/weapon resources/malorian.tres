@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="weapons_res" load_steps=2 format=3 uid="uid://bjtq431ycbuln"]
+
+[ext_resource type="Script" path="res://Scripts/weapon_res.gd" id="1_0adjn"]
+
+[resource]
+script = ExtResource("1_0adjn")
+Weapon_Name = "malorian"
+Activate_Anim = "malorian_activate"
+Deactivate_Anim = "malorian_deactivate"
+Shoot_Anim = "malorian_shoot"
+Reload_Anim = "malorian_reload"
+Current_Ammo = 7
+Reserve_Ammo = 21
+Magazine = 7
+Max_Ammo = 21
+Auto_Fire = false

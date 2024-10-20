@@ -9,10 +9,9 @@ extends CharacterBody3D
 @onready var ray_cast_3d = $CrouchingRay
 @onready var neck = $neck
 @onready var camera_3d = $neck/head/eye/Camera3D
-@onready var gun_anim = $AnimationPlayer
-@onready var gun_pivot = $neck/head/eye/Camera3D/gun_pivot
+@onready var gun_anim = $neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig/AnimationPlayer
 
-@onready var gun_barrel = $neck/head/eye/Camera3D/gun_pivot/Gun/RayCast3D
+@onready var gun_barrel = $neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig/malorian_pivot/Gun/RayCast3D
 @onready var ledge_vertical_detection = $neck/head/eye/LedgeDetect/LedgeVerticalDetection
 @onready var ledge_player_detect = $neck/head/eye/LedgeDetect/LedgePlayerDetect
 
@@ -100,9 +99,8 @@ const HIT_STAGGER = 8.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	gun_anim.play("gun_activate")
-	Global.player = self
-
+	pass
+	
 func _input(event):
 	if event.is_action_pressed("exit"):
 		get_tree().quit()
@@ -224,8 +222,8 @@ func _physics_process(delta):
 		
 #Handle Shooting
 
-	if Input.is_action_pressed("shoot"):
-		shoot()
+	#if Input.is_action_pressed("shoot"):
+		#shoot()
 
 		
 
@@ -253,8 +251,6 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
 		
-		#gun_pivot.position.y = lerp(gun_pivot.position.x, gun_bobbing_vector.x*(head_bobbing_gun_intensity/2.0), delta*lerp_speed)
-		#gun_pivot.position.x = lerp(gun_pivot.position.y, gun_bobbing_vector.x*(head_bobbing_gun_intensity/2.0), delta*lerp_speed)
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta*lerp_speed)
@@ -323,14 +319,14 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-func shoot():
-	
-	if !gun_anim.is_playing():
-		gun_anim.play("shoot")
-		instance = bullet.instantiate()
-		instance.position = gun_barrel.global_position
-		instance.transform.basis = gun_barrel.global_transform.basis
-		get_parent().add_child(instance)
+#func shoot():
+	#
+	#if !gun_anim.is_playing():
+		#gun_anim.play("malorian_shoot")
+		#instance = bullet.instantiate()
+		#instance.position = gun_barrel.global_position
+		#instance.transform.basis = gun_barrel.global_transform.basis
+		#get_parent().add_child(instance)
 
 
 func camera_zoom_out(duration: float) -> void:

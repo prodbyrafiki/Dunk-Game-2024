@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnx3ho78mgsl1"]
+
+[ext_resource type="PackedScene" uid="uid://5mnsubklx82b" path="res://assets/Malorian/madalorian.glb" id="1_i0fv8"]
+
+[node name="Mandalorian" type="Node3D"]
+
+[node name="madalorian" parent="." instance=ExtResource("1_i0fv8")]

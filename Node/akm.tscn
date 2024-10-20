@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://xuqkpd5mmg5j"]
+
+[ext_resource type="PackedScene" uid="uid://cjdx1ebp3m61c" path="res://assets/weapons/PSXAssaultRifle[FIXED]/AK/akm.glb" id="1_wttot"]
+
+[node name="AKM" type="Node3D"]
+
+[node name="akm" parent="." instance=ExtResource("1_wttot")]
