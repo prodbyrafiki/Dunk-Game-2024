@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dubol6qlctoml"
-path.s3tc="res://.godot/imported/RPK_Texture_240.png-8b1b3d50b51e528d8b340fd141f73d47.s3tc.ctex"
+path.s3tc="res://.godot/imported/RPK_Texture_240.png-ebe3b26d7294dc8399fb23b7a99eaabb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/weapons/PSXAssaultRifle[FIXED]/AK/textures/RPK_Texture_240.png"
-dest_files=["res://.godot/imported/RPK_Texture_240.png-8b1b3d50b51e528d8b340fd141f73d47.s3tc.ctex"]
+source_file="res://assets/weapons/PSXAssaultRifle[FIXED]/AK/Textures/RPK_Texture_240.png"
+dest_files=["res://.godot/imported/RPK_Texture_240.png-ebe3b26d7294dc8399fb23b7a99eaabb.s3tc.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ki25he3d5s8w"]
+[gd_scene load_steps=14 format=4 uid="uid://ki25he3d5s8w"]
 
 [ext_resource type="Texture2D" uid="uid://yktoc1a5m4nc" path="res://assets/Enemy/Zombie/gltf/maxdamage_zombie-low-poly_corpse1.png" id="1_0o0gd"]
 [ext_resource type="Script" path="res://Node/enemybody.gd" id="1_hifyr"]
@@ -194,8 +194,6 @@ bind/52/pose = Transform3D(1, 1.34455e-20, -6.29242e-10, -6.29242e-10, -5.65438e
 bind/53/name = &"leg_pole.L"
 bind/53/bone = -1
 bind/53/pose = Transform3D(0.999619, -0.000374864, -0.0276103, -0.0276103, -0.0271438, -0.99925, -0.000374864, 0.999632, -0.0271438, -0.110927, 1.3447, -0.360129)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_raf1l"]
 
 [sub_resource type="Animation" id="Animation_ldqoj"]
 resource_name = "Attack1"
@@ -1642,8 +1640,16 @@ _data = {
 "Walk": SubResource("Animation_25efe")
 }
 
-[node name="EnemyBody" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_raf1l"]
+radius = 0.409186
+height = 1.68316
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ya0is"]
+radius = 0.223443
+
+[node name="EnemyBody" type="CharacterBody3D" groups=["Enemy"]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_hifyr")
 
 [node name="Armature" type="Node3D" parent="."]
@@ -2035,10 +2041,6 @@ skin = SubResource("Skin_xwnqb")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_raf1l")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k7wgr")
@@ -2048,5 +2050,13 @@ speed_scale = 2.5
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878845, 0)
+shape = SubResource("CapsuleShape3D_raf1l")
+
+[node name="HeadCollison" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90286, 0)
+shape = SubResource("SphereShape3D_ya0is")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://womxqni5h74b"
-path.s3tc="res://.godot/imported/PAShotgunText.png-3facd24402e4ac94ec579be291ed2fd2.s3tc.ctex"
+path.s3tc="res://.godot/imported/PAShotgunText.png-b71a9205dcbec8b3d52163bfe7d590d1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/weapons/PSXShotgunPack[FIXED]/Files/pumpActionShotgun/textures/PAShotgunText.png"
-dest_files=["res://.godot/imported/PAShotgunText.png-3facd24402e4ac94ec579be291ed2fd2.s3tc.ctex"]
+source_file="res://assets/weapons/PSXShotgunPack[FIXED]/Files/pumpActionShotgun/Textures/PAShotgunText.png"
+dest_files=["res://.godot/imported/PAShotgunText.png-b71a9205dcbec8b3d52163bfe7d590d1.s3tc.ctex"]
 
 [params]
 

@@ -128,6 +128,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../Bullet_Point:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.51605, -0.288099, -2.81543)]
+}
 
 [sub_resource type="Animation" id="Animation_ymojg"]
 resource_name = "akm_activate"
@@ -168,6 +180,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.51605, -0.288099, -2.81543)]
 }
 
 [sub_resource type="Animation" id="Animation_c8g4s"]
@@ -210,6 +234,47 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.51605, -0.288099, -2.81543), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1wx8p"]
+resource_name = "akm_Ooa"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../akm_pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.065), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../akm_pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_a5cbp"]
 resource_name = "akm_reload"
@@ -241,7 +306,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_di2om"]
 resource_name = "akm_shoot"
-length = 0.15
+length = 0.1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -250,7 +315,7 @@ tracks/0/path = NodePath("../../akm_pivot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.15),
+"times": PackedFloat32Array(0, 0.02, 0.05, 0.07, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.4), Vector3(0, 0, 0.1), Vector3(0, 0, 0.05), Vector3(0, 0, 0)]
@@ -262,7 +327,7 @@ tracks/1/path = NodePath("../../akm_pivot:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.15),
+"times": PackedFloat32Array(0, 0.02, 0.05, 0.07, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.10472, 0.0698132, 0), Vector3(0.0349066, 0.0436332, 0), Vector3(0.0174533, 0.0174533, 0), Vector3(0, 0, 0)]
@@ -308,6 +373,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.495863, -0.205243, -1.10333)]
+}
 
 [sub_resource type="Animation" id="Animation_p0fjf"]
 resource_name = "malorian_deactivate"
@@ -348,6 +425,35 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.495863, -0.205243, -1.10333), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_aq747"]
+resource_name = "malorian_ooa"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.025), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_56gco"]
@@ -448,6 +554,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.443865, -0.157466, -1.51804)]
+}
 
 [sub_resource type="Animation" id="Animation_vvnoa"]
 resource_name = "sawedoff_deactivate"
@@ -488,6 +606,35 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bullet_Point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.443865, -0.157466, -1.51804), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kabjq"]
+resource_name = "sawedoff_ooa"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../sawedoff_pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.03), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c4pj1"]
@@ -548,69 +695,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0.411898, 0, 0.0698132), Vector3(0.13439, 0, 0), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1wx8p"]
-resource_name = "akm_Ooa"
-length = 0.05
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../akm_pivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.05),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.065), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../akm_pivot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_aq747"]
-resource_name = "malorian_ooa"
-length = 0.05
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.05),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.025), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kabjq"]
-resource_name = "sawedoff_ooa"
-length = 0.05
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../sawedoff_pivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.05),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.03), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ctv5v"]
 _data = {
 "RESET": SubResource("Animation_0136x"),
@@ -631,7 +715,7 @@ _data = {
 "sawedoff_shoot": SubResource("Animation_l27tu")
 }
 
-[node name="player" type="CharacterBody3D" groups=["player"]]
+[node name="player" type="CharacterBody3D" groups=["Target", "player"]]
 collision_layer = 2
 script = ExtResource("1_jemhm")
 
@@ -740,6 +824,22 @@ libraries = {
 }
 
 [node name="Bullet_Point" type="Marker3D" parent="neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51605, -0.288099, -2.81543)
+
+[node name="BarrelPos" type="Node3D" parent="neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig/Bullet_Point"]
+
+[node name="AimRay" type="RayCast3D" parent="neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+target_position = Vector3(0, -1, -100)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AimRayEnd" type="Node3D" parent="neck/head/eye/Camera3D/Weapons_Manager/Weapons_Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -101.5)
+
+[node name="BulletTraceEnd" type="Node3D" parent="neck/head/eye/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -101.5)
 
 [node name="LedgeDetect" type="Node3D" parent="neck/head/eye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)

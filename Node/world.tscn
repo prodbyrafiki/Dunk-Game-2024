@@ -1,4 +1,4 @@
-[gd_scene load_steps=361 format=4 uid="uid://850rk5hb4saf"]
+[gd_scene load_steps=363 format=4 uid="uid://850rk5hb4saf"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ku6bn"]
 [ext_resource type="Environment" uid="uid://b7ltm2f2r7n58" path="res://tower_inside.tres" id="1_y2kxb"]
@@ -28,6 +28,7 @@
 [ext_resource type="Material" uid="uid://dnl3p86c3pksw" path="res://Textures/TEXTURES/FLOOR_1A.tres" id="25_kk6gw"]
 [ext_resource type="Material" uid="uid://dmp0ursgmjwxw" path="res://Textures/TEXTURES/RIVET_2A.tres" id="26_wd73x"]
 [ext_resource type="Material" uid="uid://civwgv3dymusg" path="res://Textures/TEXTURES/SUPPORT_3A.tres" id="27_o75xq"]
+[ext_resource type="PackedScene" uid="uid://difajb6eywshk" path="res://Node/pause_menu.tscn" id="33_ug7f7"]
 [ext_resource type="PackedScene" uid="uid://ki25he3d5s8w" path="res://Node/enemybody.tscn" id="37_4ylot"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_xy8ua"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="39_g85o7"]
@@ -1209,6 +1210,9 @@ points = PackedVector3Array(-14.5, 15, -4, -15, 15, -4, -15, 14, -4, -14.5, 14, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nanfj"]
 points = PackedVector3Array(-32, 4, -24, -32, 2, -24, -28, 2, -24, -28, 4, -24, -32, 4, 0, -32, 2, 0, -28, 2, 0, -28, 4, 0)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4o51g"]
+size = Vector3(4.61432, 9.27344, 35.7593)
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_fwywc"]
 vertices = PackedVector3Array(-59.5, 4.5, 30.25, -32.5, 4.5, 30.25, -32.25, 4.5, 29, -30, 4.5, 28.25, -30, 4.5, 0.5, -48, 4.5, 0.5, -59.5, 4.5, 12, -28.75, 4.5, 28.25, -28.5, 4.5, 29, -27.5, 4.5, 29, -27.25, 4.5, 30, -0.5, 4.5, 30.25, -0.5, 4.5, 12, -12, 4.5, 0.5, -30.5, 7.5, 29.75, -30.5, 7.5, 30.75, -29.25, 7.5, 30.75, -29.25, 7.5, 29.75, -27.5, 4.5, 31.5, -30, 4.5, 32, -30, 4.5, 59.5, -12, 4.5, 59.5, -0.5, 4.5, 48, -32.25, 4.5, 31.5, -59.5, 4.5, 48, -48, 4.5, 59.5)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 6), PackedInt32Array(6, 2, 0), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(7, 3, 4), PackedInt32Array(9, 7, 11), PackedInt32Array(11, 7, 12), PackedInt32Array(12, 7, 13), PackedInt32Array(13, 7, 4), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(18, 10, 11), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 22), PackedInt32Array(22, 18, 11), PackedInt32Array(0, 1, 23), PackedInt32Array(19, 20, 23), PackedInt32Array(23, 20, 25), PackedInt32Array(23, 25, 24), PackedInt32Array(23, 24, 0)]
@@ -1355,7 +1359,7 @@ script = ExtResource("1_ku6bn")
 environment = ExtResource("1_y2kxb")
 
 [node name="player" parent="Enviroment" instance=ExtResource("2_uhjjp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2981, -7.37424, 133.813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0055, -11.2113, 60.2306)
 
 [node name="EnemyBody" parent="Enviroment" instance=ExtResource("37_4ylot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1496, -9.54779, 120.302)
@@ -2296,6 +2300,18 @@ shape = SubResource("ConvexPolygonShape3D_dkpfo")
 
 [node name="entity_0_brush_303_collision_shape" type="CollisionShape3D" parent="Enviroment/FuncGodotMap3/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_nanfj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/FuncGodotMap3/entity_0_worldspawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.3358, 8.75905, 29.9682)
+shape = SubResource("BoxShape3D_4o51g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Enviroment/FuncGodotMap3/entity_0_worldspawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45309, 8.75905, 29.9682)
+shape = SubResource("BoxShape3D_4o51g")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Enviroment/FuncGodotMap3/entity_0_worldspawn"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.0088, 8.75905, 62.3744)
+shape = SubResource("BoxShape3D_4o51g")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Enviroment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.396, -15.88, 103.297)
@@ -4076,6 +4092,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="PauseMenu" parent="UI" instance=ExtResource("33_ug7f7")]
+visible = false
+layout_mode = 1
+offset_left = 553.0
+offset_top = 305.0
+offset_right = 553.0
+offset_bottom = 305.0
+
 [node name="HitRect" type="ColorRect" parent="UI"]
 visible = false
 layout_mode = 1
@@ -4128,7 +4152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.378, 0, -23.7222)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0553, 0, -12.4191)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.5
 autostart = true
 
 [connection signal="player_hit" from="Enviroment/player" to="." method="_on_player_player_hit"]

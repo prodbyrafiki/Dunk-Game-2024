@@ -100,7 +100,3 @@ skeleton = NodePath("")
 [node name="Malorian_001" type="MeshInstance3D" parent="Malorian" index="0"]
 mesh = SubResource("ArrayMesh_rsr63")
 skeleton = NodePath("")
-
-[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0.0999713, 0.0867953, -0.550627)
-target_position = Vector3(0, 0, -1)

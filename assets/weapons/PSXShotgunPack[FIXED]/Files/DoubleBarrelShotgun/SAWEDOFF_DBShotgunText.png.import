@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56sw04fkv6ct"
+uid="uid://brgxkk4fv110n"
 path.s3tc="res://.godot/imported/SAWEDOFF_DBShotgunText.png-98cb6a283021818c92c6729c84a2f081.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "65472111924011840aa5fe0480c05d7c"
 }
 
 [deps]

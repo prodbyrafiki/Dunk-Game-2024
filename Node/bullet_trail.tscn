@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu6bdlbjrlfdh"]
+
+[ext_resource type="Script" path="res://Scripts/bullet_trail.gd" id="1_gofp5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r77b2"]
+albedo_color = Color(1, 1, 0.0156863, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xloqs"]
+size = Vector2(0.02, 2)
+
+[node name="BulletTrail" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_r77b2")
+mesh = SubResource("PlaneMesh_xloqs")
+script = ExtResource("1_gofp5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

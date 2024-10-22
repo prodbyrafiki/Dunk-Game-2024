@@ -1,21 +1,14 @@
 extends Control
-
+# Node
 @onready var play_button = $ColorRect/MarginContainer/VBoxContainer/Play
 @onready var options_button = $ColorRect/MarginContainer/VBoxContainer/Options
 @onready var exit_button = $ColorRect/MarginContainer/VBoxContainer/Exit
-
-
-# Called when the node enters the scene tree for the first time.
-
-func _ready():
-	pass
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Node/world.tscn")
 
 func _on_options_pressed():
 	print("load options menu")
-
 
 func _on_exit_pressed():
 	get_tree().quit()  
