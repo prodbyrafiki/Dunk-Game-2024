@@ -73,11 +73,12 @@ signal player_hit
 
 
 func _unhandled_input(event):
+	# Makes mouse visible for menu use and captures for when playing the game
 	if event is InputEventMouseMotion:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
+	elif event.is_action_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
+	# Does check for whether or not player is in menu, if not pushes through to camera motion
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			if free_looking:
@@ -91,7 +92,7 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back") # Gets Movement Vectors
-	# Translates Movement Vectors into camera rotation
+	# Translates Movement Vectors into camera rotation for head sway mimicing
 	if input_dir.x < 0:
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, deg_to_rad(5.0), delta * lerp_speed)
 	else:
@@ -102,18 +103,18 @@ func _physics_process(delta):
 	else:
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z,0.0, delta * lerp_speed)
 
-# Handle's Crouch Input
-	if Input.is_action_pressed("crounch") && is_on_floor():
+# Handle's Crouch Input, changes speed and lerps it, changes collision shapes and changes slide varibales
+	if Input.is_action_pressed("crounch") and is_on_floor():
 		current_speed = lerp(current_speed, crouching_speed, delta * lerp_speed)
 		pivot.position.y = lerp(pivot.position.y, crouching_depth, delta*lerp_speed)
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
 		# Slide Begin Logic
-		if sprinting && input_dir != Vector2.ZERO:
+		if sprinting and input_dir != Vector2.ZERO:
 			sliding = true
 			slide_timer = slide_timer_max
 			free_looking = true 
-# Sets States for Crouching
+# Sets States for Crouching 
 		walking = false
 		sprinting = false
 		crouching = true
@@ -121,13 +122,13 @@ func _physics_process(delta):
 	elif Input.is_action_just_released("crounch"):
 			slide_timer = 0
 			sliding = false
-
+# Ray check for whether or not there is overhead object
 	elif !ray_cast_3d.is_colliding():
 		standing_collision_shape.disabled = false
 		crouching_collision_shape.disabled = true
 		pivot.position.y = lerp(pivot.position.y, 0.0 , delta*lerp_speed)
 		
-	#  Handles Sprinting States and speed
+	#  Handles Sprinting States and speed lerp
 		if Input.is_action_pressed("sprint"):
 			current_speed = lerp(current_speed, sprinting_speed, delta * lerp_speed)
 			walking = false
@@ -139,7 +140,7 @@ func _physics_process(delta):
 			walking = true
 			sprinting = false
 			crouching = false
-# Handles Free Looking
+# Handles Free Looking, changes variables and camera rotation when pressed
 	if Input.is_action_pressed("free_look"):
 		free_looking = true
 		camera_3d.rotation.z = -deg_to_rad(neck.rotation.y * free_look_tilt)
@@ -147,13 +148,13 @@ func _physics_process(delta):
 		free_looking = false
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerp_speed)
 		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
-# Handles Sliding timer and calculation and sets sliding variable accordingly
+# Handles Sliding timer and calculation and sets sliding variable accordingly using - delta
 	if sliding:
 		slide_timer -= delta
 		if slide_timer <= 0:
 			sliding = false
 			free_looking = false
-# Handles Head Bobbing during diffrent states,
+# Handles Head Bobbing during diffrent states
 	if sprinting:
 		head_bobbing_current_intesity = HEAD_BOBBING_SPRINTING_INTENSITY
 		head_bobbing_index += HEAD_BOBBING_SPRINTING_SPEED * delta
@@ -164,7 +165,7 @@ func _physics_process(delta):
 		head_bobbing_current_intesity = HEAD_BOBBING_CROUCHING_INTENSITY
 		head_bobbing_index += HEAD_BOBBING_CROUCHING_SPEED * delta
 
-	if is_on_floor() && input_dir !=Vector2.ZERO:
+	if is_on_floor() and input_dir !=Vector2.ZERO:
 		head_bobbing_vector.y = sin(head_bobbing_index)
 		head_bobbing_vector.x = sin(head_bobbing_index/2)+0.5
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y*(head_bobbing_current_intesity/2.0), delta*lerp_speed)
@@ -173,15 +174,15 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta*lerp_speed)
 # Handles mantle feautre and velocoty set when mantling
-	if ledge_vertical_detection.is_colliding() && ledge_player_detect.is_colliding() and not is_on_floor():
+	if ledge_vertical_detection.is_colliding() and ledge_player_detect.is_colliding() and not is_on_floor():
 		velocity.y = 0
 
-	if ledge_vertical_detection.is_colliding() && ledge_player_detect.is_colliding() and Input.is_action_pressed("jump"):
+	if ledge_vertical_detection.is_colliding() and ledge_player_detect.is_colliding() and Input.is_action_pressed("jump"):
 		velocity.y = JUMP_VELOCITY * 1.5
 	# Add the gravity.
 	elif not is_on_floor():
 		velocity.y -= gravity * delta
-# Handle jump.
+# Handle jump, changes velocity upwards
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = velocity.y + JUMP_VELOCITY
 # Handles dashing and setting timer and dash speed to velocity
@@ -198,13 +199,13 @@ func _physics_process(delta):
 # Gets input direction and translates into a varible whcih can be used to change velocity
 	var direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 # Handling all speed calculations
-	if direction && is_on_floor() && not dashing:
+	if direction and is_on_floor() and not dashing:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 	elif not dashing:
 		velocity.x = lerp(velocity.x, direction.x * current_speed, 0.05)
 		velocity.z = lerp(velocity.z, direction.z * current_speed, 0.05)
-# Slding Calculation
+# Slding Calculation for speed based on time spent sliding, deccelerates if longer spent
 	if sliding:
 		current_speed = (slide_timer + 0.4) * slide_speed
 	else:
@@ -220,7 +221,7 @@ func _physics_process(delta):
 func camera_zoom_out(duration: float) -> void:
 	if cam_dash_tween and cam_dash_tween.is_running(): #If not dashing turn off camera dash tween
 		cam_dash_tween.kill()
-# Creates tween for camera when dashing
+# Creates tween for camera when dashing, chnages fov of camera essentially
 	if dashing:
 		cam_dash_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		cam_dash_tween.tween_property(camera, "fov", 90.0, 0.3)

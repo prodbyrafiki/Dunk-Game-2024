@@ -15,7 +15,7 @@ var weapon_list = {}
 
 @export var _weapon_resources: Array[weapons_res]
 @export var start_weapons: Array[String]
-@export var starting_weapon: String  # Define which weapon to start with
+@export var starting_weapon: String  
 
 var instance
 
@@ -26,7 +26,7 @@ enum {
 	}
 
 func _ready():
-	initialize()  # Initialize the state machine
+	initialize()  
 	print("Ready function called")
 
 func initialize():
@@ -49,11 +49,10 @@ func initialize():
 		else:
 			print("Error: Weapon not found in weapon_list: ", weapon_name)
 
-	# Step 3: Set the current weapon based on starting_weapon
+	# Sets up current weapons and pulls from starting weapon list
 	print("--- Setting Starting Weapon ---")
 	if weapon_stack.size() > 0:
 		if weapon_list.has(starting_weapon):
-			# Start with the specific weapon if found
 			current_weapon = weapon_list[starting_weapon]
 			weapon_indicator = weapon_stack.find(starting_weapon)
 			print("Starting weapon set to: ", starting_weapon)
@@ -65,7 +64,7 @@ func initialize():
 	else:
 		print("Error: weapon_stack is empty")
 
-	# Step 4: Final check on current_weapon
+	# Error check incase weapon is not produced and swaps dfferent weapon
 	if current_weapon == null:
 		print("Error: Current weapon is null")
 	else:
@@ -74,6 +73,7 @@ func initialize():
 		enter()
 
 func enter(): 
+	# Plays animation activate animation for current weapon and emits signals
 	if current_weapon:
 		print("Entering weapon: ", current_weapon.Weapon_Name)
 		print("Queued animation: ", current_weapon.Activate_Anim) 
@@ -87,12 +87,12 @@ func _input(event):
 	if event.is_action_pressed("weapon_up"):
 		weapon_indicator = min(weapon_indicator + 1, weapon_stack.size() - 1)
 		print("Switching weapon up to: ", weapon_stack[weapon_indicator])
-		exit(weapon_stack[weapon_indicator])
+		exit_weapon(weapon_stack[weapon_indicator])
 
 	if event.is_action_pressed("weapon_down"):
 		weapon_indicator = max(weapon_indicator - 1, 0)
 		print("Switching weapon down to: ", weapon_stack[weapon_indicator])
-		exit(weapon_stack[weapon_indicator])
+		exit_weapon(weapon_stack[weapon_indicator])
 		
 	if event.is_action_pressed("shoot"):
 		shoot()
@@ -100,7 +100,8 @@ func _input(event):
 	if event.is_action_pressed("reload"):
 		reload()
 
-func exit(_next_weapon: String):
+func exit_weapon(_next_weapon: String):
+	# Checks for whether or not next weapon is the same as prior, then switches to next weapon
 	if current_weapon and _next_weapon != current_weapon.Weapon_Name:
 		if animation_player.get_current_animation() != current_weapon.Deactivate_Anim:
 			print("Switching from: ", current_weapon.Weapon_Name, " to: ", _next_weapon)
@@ -108,20 +109,23 @@ func exit(_next_weapon: String):
 			next_weapon = _next_weapon
 
 func change_weapon(weapon_name: String):
+	# Swaps to next weapon in list when input is given then goes back to enter function
 	if weapon_list.has(weapon_name):
 		current_weapon = weapon_list[weapon_name]
 		next_weapon = ""
 		enter()
 
 func _on_animation_player_animation_finished(anim_name):
+	# Waits for deactivate weapon anim and sets up autofire by looping shoot anim
 	if anim_name == current_weapon.Deactivate_Anim:
 		change_weapon(next_weapon)
 		
-	if anim_name == current_weapon.Shoot_Anim && current_weapon.Auto_Fire == true:
+	if anim_name == current_weapon.Shoot_Anim and current_weapon.Auto_Fire == true:
 		if Input.is_action_pressed("shoot"):
 			shoot()
 		
 func shoot():
+	# checks for ammo then plays shoot anim, then sends information too hitscan function for calculation
 	if current_weapon.Current_Ammo != 0:
 		if !animation_player.is_playing():
 			animation_player.play(current_weapon.Shoot_Anim)
@@ -140,6 +144,7 @@ func shoot():
 		reload()
 
 func reload():
+	# Changes weapon ammo values and plays out of ammo anim and reload anim
 	if current_weapon.Current_Ammo == current_weapon.Magazine:
 		return
 	elif !animation_player.is_playing():
@@ -154,13 +159,14 @@ func reload():
 			animation_player.play(current_weapon.Ooa_Anim)
 
 func get_camera_collision() -> Vector3:
+	# Pulls Camera and viewport and sets up variables which are used as ray's for hitscan. Mainly used for information storage
 	var camera = get_viewport().get_camera_3d()
 	var viewport = get_viewport().get_size()
 	var ray_origin = camera.project_ray_origin(viewport/2)
 	var ray_end = ray_origin + camera.project_ray_normal(viewport/2) * current_weapon.Weapon_Range
 	var new_intersection = PhysicsRayQueryParameters3D.create(ray_origin,ray_end)
 	var intersection = get_world_3d().direct_space_state.intersect_ray(new_intersection)
-	
+		
 	if not intersection.is_empty():
 		var col_point = intersection.position
 		return col_point
@@ -168,7 +174,7 @@ func get_camera_collision() -> Vector3:
 		return ray_end
 
 func hit_scan_collision(col_point: Vector3):
-	# gets variables from previous camera fuction and calculates in order to setup hitscan 
+	# Gets variables from previous camera fuction and calculates in order to setup hitscan 
 	var bullet_direction = (col_point - bullet_point.get_global_transform().origin).normalized()
 	var new_intersection = PhysicsRayQueryParameters3D.create(bullet_point.get_global_transform().origin, col_point + bullet_direction * 2)
 	var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_intersection)
@@ -177,6 +183,6 @@ func hit_scan_collision(col_point: Vector3):
 		hit_scan_damage(bullet_collision.collider)
 
 func hit_scan_damage(collider):
-	#finds enemy through grouping and 
+	# Finds enemy through grouping and calls fucntion within enemy script which applies damage
 	if collider.is_in_group("Enemy") and collider.has_method("hit_succesfull"):
 		collider.hit_succesfull(current_weapon.Damage)

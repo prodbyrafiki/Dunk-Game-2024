@@ -14,9 +14,9 @@ func _ready():
 	randomize()
 
 func _process(delta):
-	if Input.is_action_pressed("pause"):
+	if Input.is_action_just_pressed("pause"):
 		_pause_menu()
-
+		
 func _on_player_player_hit():
 	hit_rect.visible = true
 	await get_tree().create_timer(0.2).timeout

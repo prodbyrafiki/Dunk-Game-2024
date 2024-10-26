@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 				var player_position = player.global_transform.origin
 				player_position.y = global_transform.origin.y  # Prevent vertical tilt
 				look_at(player_position, Vector3.UP)
-# Sets Animation
+				# Sets Animation
 				if not animation_player.is_playing() or animation_player.current_animation != "Walk":
 					animation_player.play("Walk")
 
