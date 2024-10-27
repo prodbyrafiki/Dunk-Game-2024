@@ -11,22 +11,27 @@ var enemy = preload("res://Node/enemybody.tscn")
 var instance
 
 func _ready():
+	# Sets up random spawn point selection
 	randomize()
 
 func _process(delta):
+	# Pause Input
 	if Input.is_action_just_pressed("pause"):
 		_pause_menu()
 		
 func _on_player_player_hit():
+	# Hit indicator
 	hit_rect.visible = true
 	await get_tree().create_timer(0.2).timeout
 	hit_rect.visible = false
 
 func _get_random_child(parent_node):
+	# Selects random child from spawns and returns the node as a variable
 	var random_id = randi() % parent_node.get_child_count()
 	return parent_node.get_child(random_id)
 
 func _on_enemy_spawn_timer_timeout():
+	# Gets spawn position then puts it into the world using the spawn nodes origin pos
 	if spawns.get_child_count() == 0:
 		print("No spawn points found!")
 		return
@@ -38,7 +43,7 @@ func _on_enemy_spawn_timer_timeout():
 
 	var new_transform = instance.global_transform 
 	new_transform.origin = spawn_point  
-	instance.global_transform = new_transform  
+	instance.global_transform = new_transform 
 
 func _pause_menu():
 	if paused:
